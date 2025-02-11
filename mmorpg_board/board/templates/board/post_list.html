@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Список объявлений</h1>
+<a href="{% url 'create_post' %}">Создать новое объявление</a>
+<ul>
+    {% for post in posts %}
+        <li>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>Категория: {{ post.category.name }}</p>
+            <p>Автор: {{ post.author.username }}</p>
+            <p>Дата создания: {{ post.created_at }}</p>
+        </li>
+    {% empty %}
+        <li>Объявлений пока нет.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
